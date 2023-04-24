@@ -35,7 +35,7 @@ const User = mongoose.model('User', userSchema);
 app.get('/api/users/income-lower-than-5-and-car-make-bmw-mercedes', async function(req, res) {
     try {
     const users = await User.aggregate([
-        { $match: { car: { $in: ['BMW', 'Mercedes'] } } },
+        { $match: { car: { $regex: /^(BMW|Mercedes)/ } } },
         {
           $addFields: {
             income_num: {
